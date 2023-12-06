@@ -3,7 +3,7 @@ import axios from "axios";
 import * as os from "os";
 import { apiHerf, extensionId, extensionVersion } from "../param/constparams";
 
-const privacy = vscode.workspace.getConfiguration("Codegeex").get("Privacy");
+const privacy = vscode.workspace.getConfiguration("Aicoder").get("Privacy");
 
 export function getOpenExtensionData(): Promise<string> {
     return new Promise((resolve, reject) => {

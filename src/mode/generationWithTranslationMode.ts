@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { hash, languageList, localeTag } from "../param/constparams";
-import { codegeexCodeTranslation } from "../utils/codegeexCodeTranslation";
+import { aicoderCodeTranslation } from "../utils/aicoderCodeTranslation";
 import { getCodeTranslation } from "../utils/getCodeTranslation";
 import getDocumentLanguage from "../utils/getDocumentLanguage";
 import { showQuickPick } from "../utils/showQuickPick";
@@ -49,7 +49,7 @@ export default async function generationWithTranslationMode(
             }
             translation = await getCodeTranslation(text, srcLang, dstLang).then(
                 async (res) => {
-                    await codegeexCodeTranslation(
+                    await aicoderCodeTranslation(
                         dstLang,
                         res.translation[0].replaceAll("#", hash),
                         commandid

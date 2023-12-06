@@ -9,6 +9,10 @@ import {
 } from "./utils/statisticFunc";
 import { updateStatusBarItem } from "./utils/updateStatusBarItem";
 import { generateWithPromptMode } from "./mode/generationWithPrompMode";
+import { generateWithCompletion } from "./mode/generationWithCompletion";
+import { generateWithGenTest } from "./mode/generationWithGenTest";
+import { generateWithExplainMode } from "./mode/generationWithExplainMode";
+import { generateWithDebugMode } from "./mode/generationWithDebugMode";
 import welcomePage from "./welcomePage";
 import generationWithTranslationMode from "./mode/generationWithTranslationMode";
 import { codelensProvider } from "./provider/codelensProvider";
@@ -29,27 +33,27 @@ let originalColor: string | vscode.ThemeColor | undefined;
 let myStatusBarItem: vscode.StatusBarItem;
 
 export async function activate(context: vscode.ExtensionContext) {
-    console.log('Congratulations, your extension "CodeGeeX" is now active!');
+    console.log('Congratulations, your extension "AiCoder" is now active!');
     try {
         getOpenExtensionData();
     } catch (err) {
         console.error(err);
     }
     context.subscriptions.push(
-        vscode.commands.registerCommand("codegeex.welcome-page", async () => {
+        vscode.commands.registerCommand("aicoder.welcome-page", async () => {
             await welcomePage(context);
         })
     );
     if (vscode.env.isNewAppInstall) {
-        vscode.commands.executeCommand("codegeex.welcome-page");
+        vscode.commands.executeCommand("aicoder.welcome-page");
     }
     checkPrivacy();
     survey();
     let targetEditor: vscode.TextEditor;
 
-    const statusBarItemCommandId = "codegeex.disable-enable";
+    const statusBarItemCommandId = "aicoder.disable-enable";
     context.subscriptions.push(
-        vscode.commands.registerCommand("codegeex.disable-enable", () => {
+        vscode.commands.registerCommand("aicoder.disable-enable", () => {
             disableEnable(myStatusBarItem, g_isLoading, originalColor, context);
         })
     );
@@ -76,7 +80,7 @@ export async function activate(context: vscode.ExtensionContext) {
     //subscribe interactive-mode command
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            "codegeex.interactive-mode",
+            "aicoder.interactive-mode",
             async () => {
                 const editor = vscode.window.activeTextEditor;
                 if (!editor) {
@@ -96,7 +100,7 @@ export async function activate(context: vscode.ExtensionContext) {
     );
     //subscribe translation-mode command
     context.subscriptions.push(
-        vscode.commands.registerCommand("codegeex.translate-mode", async () => {
+        vscode.commands.registerCommand("aicoder.translate-mode", async () => {
             const editor = vscode.window.activeTextEditor;
             if (!editor) {
                 vscode.window.showInformationMessage(localeTag.noEditorInfo);
@@ -111,7 +115,7 @@ export async function activate(context: vscode.ExtensionContext) {
         })
     );
     context.subscriptions.push(
-        vscode.commands.registerCommand("codegeex.prompt-mode", () => {
+        vscode.commands.registerCommand("aicoder.prompt-mode", () => {
             const editor = vscode.window.activeTextEditor;
             if (!editor) {
                 vscode.window.showInformationMessage(localeTag.noEditorInfo);
@@ -121,6 +125,50 @@ export async function activate(context: vscode.ExtensionContext) {
         })
     );
     context.subscriptions.push(
+        vscode.commands.registerCommand("aicoder.completion", async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                vscode.window.showInformationMessage(localeTag.noEditorInfo);
+                return;
+            }
+            targetEditor = editor;
+            generateWithCompletion(myStatusBarItem, g_isLoading, editor);
+        })
+    );
+    context.subscriptions.push(
+        vscode.commands.registerCommand("aicoder.gen-test", () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                vscode.window.showInformationMessage(localeTag.noEditorInfo);
+                return;
+            }
+            generateWithGenTest(myStatusBarItem, g_isLoading, editor);
+        })
+    );
+    context.subscriptions.push(
+        vscode.commands.registerCommand("aicoder.explain-mode", () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                vscode.window.showInformationMessage(localeTag.noEditorInfo);
+                return;
+            }
+            generateWithExplainMode(myStatusBarItem, g_isLoading, editor);
+        })
+    );
+    context.subscriptions.push(
+        vscode.commands.registerCommand("aicoder.debug-mode", () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                vscode.window.showInformationMessage(localeTag.noEditorInfo);
+                return;
+            }
+            generateWithDebugMode(myStatusBarItem, g_isLoading, editor);
+        })
+    );
+
+
+
+    context.subscriptions.push(
         vscode.workspace.registerTextDocumentContentProvider(
             myScheme,
             textDocumentProvider(myStatusBarItem, g_isLoading)
@@ -128,7 +176,7 @@ export async function activate(context: vscode.ExtensionContext) {
     );
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            "CodeGeeX.chooseCandidate",
+            "AiCoder.chooseCandidate",
             (fn, mode, commandid) => {
                 chooseCandidate(targetEditor, fn, mode, commandid);
             }
@@ -185,7 +233,7 @@ export async function activate(context: vscode.ExtensionContext) {
         context
     );
     let oneTimeDispo: vscode.Disposable;
-    vscode.commands.registerCommand("codegeex.new-completions", () => {
+    vscode.commands.registerCommand("aicoder.new-completions", () => {
         if (oneTimeDispo) {
             oneTimeDispo.dispose();
         }
@@ -219,7 +267,7 @@ export async function activate(context: vscode.ExtensionContext) {
         context.extensionUri
     );
     const translationViewDisposable = vscode.window.registerWebviewViewProvider(
-        "codegeex-translate",
+        "aicoder-translate",
         tranlationProvider
     );
 

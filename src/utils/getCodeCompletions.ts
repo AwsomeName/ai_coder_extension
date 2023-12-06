@@ -19,8 +19,17 @@ export function getCodeCompletions(
     mode: string
 ): Promise<GetCodeCompletions> {
     let API_URL = "";
+    console.log("CC-mode", mode)
     if (mode === "prompt") {
         API_URL = `${apiHref}/multilingual_code_generate_block`;
+    } else if (mode == "completion"){
+        API_URL = `${apiHref}/multilingual_code_genline`;
+    } else if (mode == "gen_test"){
+        API_URL = `${apiHref}/multilingual_gen_test`;
+    } else if (mode == "explain"){
+        API_URL = `${apiHref}/multilingual_code_explain`;
+    } else if (mode = "debug"){
+        API_URL = `${apiHref}/multilingual_code_debug`;
     } else if (mode === "interactive") {
         API_URL = `${apiHref}/multilingual_code_generate_adapt`;
     } else {
@@ -30,6 +39,9 @@ export function getCodeCompletions(
             API_URL = `${apiHref}/multilingual_code_generate_adapt`;
         }
     }
+    // debug
+    // API_URL =`${apiHref}/test/`
+
     return new Promise(async (resolve, reject) => {
         let n = 0;
         if (prompt.length <= 300) {
@@ -45,7 +57,7 @@ export function getCodeCompletions(
         let payload = {};
         if (lang.length == 0) {
             payload = {
-                prompt: prompt,
+                context: prompt,
                 n: num,
                 apikey: apiKey,
                 apisecret: apiSecret,
@@ -56,7 +68,7 @@ export function getCodeCompletions(
         } else {
             payload = {
                 lang: lang,
-                prompt: prompt,
+                context: prompt,
                 n: num,
                 apikey: apiKey,
                 apisecret: apiSecret,
@@ -93,24 +105,29 @@ export function getCodeCompletions(
             console.log(err);
             commandid = "";
         }
+        console.log("-------------- before http req ------------\n")
         try {
             let time2 = new Date().getTime();
+            console.log("------debug 111")
             axios
                 .post(API_URL, payload, { proxy: false, timeout: 120000 })
                 .then(async (res) => {
-                    console.log(res);
+                    console.log("----log_here:", res);
                     console.log(
                         "process time: " + res.data.result.process_time
                     );
                     if (res?.data.status === 0) {
+                        console.log("-----debug, if in")
                         let codeArray = res?.data.result.output.code;
                         const completions = Array<string>();
+                        console.log("----debug, array:", codeArray.length)
                         for (let i = 0; i < codeArray.length; i++) {
                             const completion = codeArray[i];
                             let tmpstr = completion;
                             if (tmpstr.trim() === "") continue;
                             if (completions.includes(completion)) continue;
                             completions.push(completion);
+                            console.log("-----comp", completion)
                         }
                         let timeEnd = new Date().getTime();
                         console.log(timeEnd - time1, timeEnd - time2);

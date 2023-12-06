@@ -26,7 +26,7 @@ export default async function welcomePage(
         <br/>
         <div>A Free Code Generation and Completion Tool</div>
         <br/>
-        <div>CodeGeeX is an AI code assistant tool for developers which makes coding easier and faster. CodeGeeX supports 20+ different programming languages, including Python, C++, Java, JavaScipt, Go, C, C#, Cuda, Objective-C/C++, PHP, HTML, TypeScript, Rust, Shell, SQL, TeX, etc.</div>
+        <div>AiCoder is an AI code assistant tool for developers which makes coding easier and faster. AiCoder supports 20+ different programming languages, including Python, C++, Java, JavaScipt, Go, C, C#, Cuda, Objective-C/C++, PHP, HTML, TypeScript, Rust, Shell, SQL, TeX, etc.</div>
         <br/>
         <style>
             .button {
@@ -61,11 +61,11 @@ export default async function welcomePage(
         <br/>
         <div style='border: 2px solid rgba(31, 70, 146, 1); margin-left: 5vw;margin-right: 5vw;border-radius:9px 9px 9px 9px; padding: 20px; font-size: 12px'>
             <div id="show1">
-                <div>Keep CodeGeeX activated, it will start generating codes when you stop writing (the icon at the bottom of VSCode starts spinning). When the generated code is shown in gray, just press <span class='keycommand'>&nbsp;Tab&nbsp;</span>  to insert the generated codes. You can also press <span class='keycommand'>&nbsp;Alt/Option+[ or ]&nbsp;</span> to change between candidates.  And you can press <span class='keycommand'>&nbsp;Alt/Option+N&nbsp;</span> to get new suggestions if you are not satisfied with the current. </div>
+                <div>Keep AiCoder activated, it will start generating codes when you stop writing (the icon at the bottom of VSCode starts spinning). When the generated code is shown in gray, just press <span class='keycommand'>&nbsp;Tab&nbsp;</span>  to insert the generated codes. You can also press <span class='keycommand'>&nbsp;Alt/Option+[ or ]&nbsp;</span> to change between candidates.  And you can press <span class='keycommand'>&nbsp;Alt/Option+N&nbsp;</span> to get new suggestions if you are not satisfied with the current. </div>
                 <img src='https://lfs.aminer.cn/misc/wangshan/pretrain/codegeex/bubble_sort_go.gif' alt=''class='gif'/>
             </div>
             <div id='show2'>
-                <div>Press <span class='keycommand'>&nbsp;Ctrl+Enter&nbsp;</span> to activate the interactive mode, CodeGeeX will generate X candidates and show them in the right panel (X can be modified in extension settings Candidate Num). Then, select the best candidate by clicking on it.</div>
+                <div>Press <span class='keycommand'>&nbsp;Ctrl+Enter&nbsp;</span> to activate the interactive mode, AiCoder will generate X candidates and show them in the right panel (X can be modified in extension settings Candidate Num). Then, select the best candidate by clicking on it.</div>
                 <img src='https://lfs.aminer.cn/misc/wangshan/pretrain/codegeex/interactive_mode2.gif' alt='' class='gif'/>
             </div>
             <div id="show3">

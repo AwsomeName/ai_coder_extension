@@ -13,7 +13,7 @@ export const codelensProvider = new (class {
         this.codelenses.push(
             new vscode.CodeLens(range, {
                 title: localeTag.useCode,
-                command: "CodeGeeX.chooseCandidate",
+                command: "AiCoder.chooseCandidate",
                 arguments: [text, mode, commandid],
                 tooltip: localeTag.chooseThisSnippet,
             })

@@ -3,9 +3,9 @@ import * as vscode from "vscode";
 import { localeCN } from "../locales/localeCN";
 import { localeEN } from "../locales/localeEN";
 
-export const extensionId = "aminer.codegeex";
+export const extensionId = "aminer.aicoder";
 export const extensionVersion = "1.1.2";
-export const myScheme = "codegeex";
+export const myScheme = "aicoder";
 
 //api to do the statistics of data
 export const apiHerf = statApiHerf;
@@ -31,6 +31,8 @@ export const languageList = [
     "CSS",
     "SQL",
     "R",
+    "Verilog",
+    "SystemVerilog",
 ];
 
 //const to replace specfic characters

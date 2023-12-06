@@ -1,6 +1,6 @@
 import { workspace } from "vscode";
 
-const configuration = workspace.getConfiguration("Codegeex", undefined);
+const configuration = workspace.getConfiguration("Aicoder", undefined);
 
 export const generationPreference = configuration.get("GenerationPreference");
 export const disabledFor = configuration.get("DisabledFor", new Object());

@@ -12,7 +12,7 @@ export default async function survey() {
         totolRequestNum = 0;
     }
     let configuration = vscode.workspace.getConfiguration(
-        "Codegeex",
+        "Aicoder",
         undefined
     );
     if (totolRequestNum >= 2000 && acceptedsurvey === null) {

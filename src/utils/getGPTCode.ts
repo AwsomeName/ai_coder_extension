@@ -22,7 +22,7 @@ export const getGPTCode = (
     }
     let allCandidates = [];
     for (let i = 0; i < candidateList.length; i++) {
-        allCandidates.push([candidateList[i], "CodeGeeX"]);
+        allCandidates.push([candidateList[i], "AiCoder"]);
     }
 
     allCandidates.sort(function (a, b) {
@@ -35,7 +35,7 @@ export const getGPTCode = (
         codelensProvider.addEl(
             lineNum,
             allCandidates[i][0],
-            allCandidates[i][1] === "CodeGeeX" ? commandid : ""
+            allCandidates[i][1] === "AiCoder" ? commandid : ""
         );
 
         if (allCandidates[i][0][0] === "\n") {

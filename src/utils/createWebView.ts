@@ -16,8 +16,8 @@ export default async function createWebView(
         panel.reveal(columnToShowIn);
     } else {
         panel = window.createWebviewPanel(
-            "CodeGeeX.keys",
-            "CodeGeeX Guide",
+            "AiCoder.keys",
+            "AiCoder Guide",
             { viewColumn: ViewColumn.Active, preserveFocus: false },
             {
                 retainContextWhenHidden: true,
@@ -33,7 +33,7 @@ export default async function createWebView(
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CodeGeeX Guide</title>
+        <title>AiCoder Guide</title>
     </head>
     <body style="margin: 0; padding: 0; width: 100%; height: 100%">
         <div>

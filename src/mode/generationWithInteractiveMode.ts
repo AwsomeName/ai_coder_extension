@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { codegeexCodeGen } from "../utils/codegeexCodeGen";
+import { aicoderCodeGen } from "../utils/aicoderCodeGen";
 import { updateStatusBarItem } from "../utils/updateStatusBarItem";
 
 const addSignal = "<|add|>";
@@ -33,7 +33,7 @@ export default async function generationWithInteractiveMode(
         .replaceAll("+", addSignal)
         .replaceAll("&", andSignal);
     updateStatusBarItem(myStatusBarItem, g_isLoading, true, "");
-    await codegeexCodeGen(code_block)
+    await aicoderCodeGen(code_block)
         .then(() =>
             updateStatusBarItem(myStatusBarItem, g_isLoading, false, "Done")
         )

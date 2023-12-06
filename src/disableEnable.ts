@@ -27,7 +27,7 @@ export default async function disableEnable(
                 changeIconColor(false, myStatusBarItem, originalColor);
                 g_isEnable = false;
                 const configuration = vscode.workspace.getConfiguration(
-                    "Codegeex",
+                    "Aicoder",
                     undefined
                 );
                 configuration.update("EnableExtension", false);
@@ -36,7 +36,7 @@ export default async function disableEnable(
             if (answer === `${localeTag.enable} ${lang}`) {
                 // Run function
                 const configuration = vscode.workspace.getConfiguration(
-                    "Codegeex",
+                    "Aicoder",
                     undefined
                 );
                 (disabledFor as any)[lang] = false;
@@ -54,7 +54,7 @@ export default async function disableEnable(
                 // Run function
                 changeIconColor(false, myStatusBarItem, originalColor);
                 const configuration = vscode.workspace.getConfiguration(
-                    "Codegeex",
+                    "Aicoder",
                     undefined
                 );
                 g_isEnable = false;
@@ -64,7 +64,7 @@ export default async function disableEnable(
             if (answer === `${localeTag.disable} ${lang}`) {
                 // Run function
                 const configuration = vscode.workspace.getConfiguration(
-                    "Codegeex",
+                    "Aicoder",
                     undefined
                 );
                 (disabledFor as any)[lang] = true;
@@ -89,7 +89,7 @@ export default async function disableEnable(
                 changeIconColor(true, myStatusBarItem, originalColor);
             }
             const configuration = vscode.workspace.getConfiguration(
-                "Codegeex",
+                "Aicoder",
                 undefined
             );
             g_isEnable = true;

@@ -4,7 +4,7 @@ import { navUri } from "./navUri";
 import { addSignal, andSignal, myScheme } from "../param/constparams";
 
 //generate uri for translation mode
-export const codegeexCodeTranslation = async (
+export const aicoderCodeTranslation = async (
     dstLang: string,
     translationRes: string,
     commandid: string
@@ -12,11 +12,11 @@ export const codegeexCodeTranslation = async (
     let documentLangId;
     documentLangId = getDocumentLangId(dstLang);
     let uri = Uri.parse(
-        `${myScheme}:CodeGeeX_translation?loading=false&mode=translation&commandid=${commandid}&translation_res=${translationRes
+        `${myScheme}:AiCoder_translation?loading=false&mode=translation&commandid=${commandid}&translation_res=${translationRes
             .replaceAll("+", addSignal)
             .replaceAll("&", andSignal)}`,
         true
     );
 
-    await navUri(uri, documentLangId, "CodeGeeX_translation");
+    await navUri(uri, documentLangId, "AiCoder_translation");
 };

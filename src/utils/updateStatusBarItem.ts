@@ -16,9 +16,9 @@ export async function updateStatusBarItem(
         myStatusBarItem.text = `$(loading~spin)` + info;
     } else {
         g_isLoading = false;
-        myStatusBarItem.text = `$(codegeex-dark)` + info;
+        myStatusBarItem.text = `$(aicoder-dark)` + info;
         statusbartimer = setTimeout(() => {
-            myStatusBarItem.text = `$(codegeex-dark)`;
+            myStatusBarItem.text = `$(aicoder-dark)`;
         }, 30000);
     }
 }

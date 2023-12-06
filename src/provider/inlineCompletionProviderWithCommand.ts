@@ -45,7 +45,7 @@ export default function inlineCompletionProviderWithCommand(
             const editor = vscode.window.activeTextEditor;
             if (!editor) {
                 vscode.window.showInformationMessage(
-                    "Please open a file first to use CodeGeeX."
+                    "Please open a file first to use AiCoder."
                 );
                 extensionContext.globalState.update("isOneCommand", false);
                 extensionContext.globalState.update(
@@ -143,7 +143,7 @@ export default function inlineCompletionProviderWithCommand(
                 let rs;
                 let lang = "";
                 const configuration = vscode.workspace.getConfiguration(
-                    "Codegeex",
+                    "Aicoder",
                     undefined
                 );
                 const num_str = String(configuration.get("CandidateNum", "1"));
